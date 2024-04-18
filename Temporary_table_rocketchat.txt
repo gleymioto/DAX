@@ -1,0 +1,19 @@
+-- FUNÇÃO DAX - criada no PBI
+-- Foi criado uma tabela temporária a partir da tabela rooms para que seja aberta no dax studio somente com os dados necessários
+-- Do dax studio exportado para o SQL server
+-- Filtra a tabela rooms para incluir apenas registros cuja coluna DATA esteja dentro do intervalo de datas entre 1º de janeiro de 2023 e 31 de dezembro de 2023, e onde a coluna DPT_UNIDADE não esteja vazia (NOT(ISBLANK(rooms[DPT_UNIDADE]))).
+-- Aplica a função SUMMARIZE para criar um resumo dos dados filtrados. 
+-- A função agrupa os dados por _id, DATA e DPT_UNIDADE.
+-- Em cada grupo formado pelos campos _id, DATA e DPT_UNIDADE, a função SUMMARIZE calcula a soma da coluna msgs.
+
+
+SUMMARIZE(
+    FILTER(rooms, 
+        rooms[DATA] >= DATE(2023, 1, 1) && rooms[DATA] <= DATE(2023, 12, 31) &&
+        NOT(ISBLANK(rooms[DPT_UNIDADE]))
+    ),
+    rooms[_id],
+    rooms[DATA],
+    rooms[DPT_UNIDADE],
+    rooms[msgs]
+)
