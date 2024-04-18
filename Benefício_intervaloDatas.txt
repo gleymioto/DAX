@@ -1,0 +1,7 @@
+--  calcula um benefício específico com base em um intervalo de datas para o último mês completo.
+
+Benefício Iniciados Ult Mês = 
+CALCULATE(  
+      [Benefício Educação],
+        D_Calendario[Data] >= EOMONTH(TODAY(), -2) + 1 && // primeiro dia do mês anterior 
+        D_Calendario[Data] < EOMONTH(TODAY(), -1) + 1) // primeiro dia do mês atual

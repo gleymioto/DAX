@@ -1,0 +1,16 @@
+---dCalendario em DAX
+
+d_CALENDARIO = 
+
+ADDCOLUMNS(
+
+    CALENDAR(MIN('f_Ocorrências (B3)'[createdon_date]),MAX('f_Ocorrências (B3)'[createdon_date])),
+        "ANO",FORMAT([Date],"YYYY"),
+        "MÊS_NOME",FORMAT([Date],"MMMM"),
+        "MÊS_NUM",MONTH([Date]),
+        "TRIM",FORMAT([Date],"Q"),
+        "DATA_CORTE",CONCATENATE(YEAR([Date]),MONTH([Date])),
+        "DIA_SEMANA",WEEKDAY([Date]),
+        "DIA_SEMANA_NOME",FORMAT(WEEKDAY([Date]),"DDDD"),
+        "DIA_ÚTIL",SWITCH(WEEKDAY([Date]),7,0,1,0,1)
+)

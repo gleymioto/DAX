@@ -1,0 +1,7 @@
+-- Função que concatena vários textos de algumas colunas para criar um link externo para um repositório da web 
+-- documento online
+-- cria uma string de nome de documento (arquivo PDF) com base em condições específicas nas colunas de uma tabela 
+
+DOC_NOME_COMPLETO = 
+if(DB_Convenios[ANEXO_TIPO]<>"", CONCATENATE(DB_Convenios[NUMERO_CONTRATO], "_" 
+& DB_Convenios[ANO_CONTRATO] & "_" & DB_Convenios[ANEXO_TITULO] & "_" & DB_Convenios[ANEXO_ID] & ".pdf"),"")

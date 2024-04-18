@@ -1,0 +1,3 @@
+-- fx em M (power query) que trás a última atualização dos dados
+
+Atualização = NOW()-(3/24)
