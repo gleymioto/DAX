@@ -1,0 +1,11 @@
+
+--  Essa função combina o status do dia com a verificação de feriados para uma determinada data
+
+Status Dia = 
+    IF(
+        WEEKDAY('dim_feriado'[DATA]) = 1 || WEEKDAY('dim_feriado'[DATA]) = 7,
+        "Final de semana",
+        "Dia de semana"
+    ) 
+    & "/" & 
+    'dim_feriado'[Feriado]
